@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<!--
+
+  Created using /
+  Source can be edited via /iyelek/3/edit
+
+-->
+<head>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style>
+  article, aside, figure, footer, header, hgroup, 
+  menu, nav, section { display: block; }
+</style>
+</head>
+<body>
+  <iframe id="i" src=""></iframe>
+<script>
+window.addEventListener("load", function(){
+
+var btn = "<button>send</button>";
+var i = document.querySelector("#i").contentWindow;
+
+i.document.body.innerHTML = btn;
+  i.window.postMessage("msg1", "http://jsbin.com");
+
+i.window.addEventListener("message", function(e){
+  alert("msg: " + e.data);
+},false);
+
+window.addEventListener("message", function(e){
+  alert(e.data);
+},false);
+  
+i.document.querySelector("button").addEventListener("click", function(e){
+  alert("k");
+  i.parent.postMessage("msg", e.origin);
+},false);
+
+},false);
+</script>
+</body>
+</html>
